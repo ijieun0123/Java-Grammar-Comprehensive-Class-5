@@ -1,137 +1,50 @@
-# 자바 문법 종합반 5 week 과제
+# Java Grammar Comprehensive Class 5
 
--------
-## 책 분류해서 조회하기
+## 소개
 
-----------
+**Java Grammar Comprehensive Class 5** 프로젝트는 자바 문법 종합반 5주 차 과제로서, 책 목록을 분류하고 조회하는 기능을 구현합니다. 이 프로젝트는 자바의 스트림(Stream) API를 활용하여 책 목록을 다양한 기준으로 필터링하고 정렬하는 방법을 학습하는 데 중점을 둡니다.
 
-### 먼저 책 분류 준비 코드를 세팅해주세요
+## 기능
 
-    public class Main {
-        public static void main(String[] args) {
-            List<Book> bookList = Arrays.asList(
-                new Book(1L, "모두의 딥러닝", "조태호", "IT", 21600),
-                new Book(2L, "이득우의 게임 수학", "이득우", "IT", 40500),
-                new Book(3L, "자바 웹 개발 워크북", "구멍가게 코딩단", "IT", 31500),
-                new Book(4L, "실전 시계열 분석", "에일린 닐슨", "IT", 34200),
-                new Book(5L, "데이터 분석가의 숫자유감", "권정민", "IT", 14400),
-                new Book(6L, "스프링 부트 실전 활용 마스터", "그렉 턴키스트", "IT", 25200),
-                new Book(7L, "오늘부터 IT를 시작합니다", "고코더", "IT", 16200),
-                new Book(8L, "그림으로 이해하는 인지과학", "기타하라 요시노리", "IT", 16200),
-                new Book(9L, "괜찮아, 그 길 끝에 행복이 기다릴 거야", "손미나", "여행", 17100),
-                new Book(10L, "여행의 이유", "김영하", "여행", 12150),
-                new Book(11L, "여행의 시간", "김진애", "여행", 16200),
-                new Book(12L, "로봇 시대 살아남기", "염규현", "역사", 14850),
-                new Book(13L, "경제 전쟁의 흑역사", "이완배", "역사", 15750),
-                new Book(14L, "100가지 동물로 읽는 세계사", "사이먼 반즈", "역사", 29700),
-                new Book(15L, "k 배터리 레볼루션", "박순혁", "경제", 17100),
-                new Book(16L, "정하준의 경제학 레시피", "장하준", "경제", 16200),
-                new Book(17L, "레버리지", "롭 무어", "경제", 16200)
-            );
+- **책 목록 분류**: 책 목록을 카테고리별로 분류합니다.
+- **가격 필터링**: 특정 가격 이하의 책들을 필터링하여 조회합니다.
+- **저자 검색**: 특정 저자의 책들을 검색하여 출력합니다.
+- **가격 순 정렬**: 책들을 가격 순으로 정렬하여 출력합니다.
 
-            // 문제에 해당하는 코드 작성 부분
-            bookList.stream().
-    
-                            
-        }
-    }
+## 설치 및 실행 방법
 
-    class Book {
-        // 분류번호
-        private Long id;
-        // 책 이름
-        private String bookName;
-        // 작가 이름
-        private String author;
-        // 카테고리
-        private String category;
-        // 가격
-        private double price;
+1. **저장소 클론**: 터미널 또는 명령 프롬프트에서 다음 명령어를 실행하여 저장소를 클론합니다.
 
-        public Book(Long id, String bookName, String author, String category, double price) {
-            this.id = id;
-            this.bookName = bookName;
-            this.author = author;
-            this.category = category;
-            this.price = price;
-        }
+   ```bash
+   git clone https://github.com/ijieun0123/Java-Grammar-Comprehensive-Class-5.git
+   ```
 
-        public String getBookName() {
-            return bookName;
-        }
-    
-        public String getCategory() {
-            return category;
-        }
+2. **프로젝트 디렉토리로 이동**:
 
-        public double getPrice() {
-            return price;
-        }
-    
-        public void setPrice(double price) {
-            this.price = price;
-        }
-    }
+   ```bash
+   cd Java-Grammar-Comprehensive-Class-5
+   ```
 
-### 필수) 다양한 책 분류 조건에 맞는 코드를 작성해주세요
-세팅한 코드를 복제한 뒤, 아래 조건을 확인하고 각 코드를 복제한 파일에 작성해주세요.<br/>
-### 조건1) 카테고리가 여행인 책 제목 조회
+3. **필요한 의존성 설치**: Gradle을 사용하여 의존성을 설치합니다.
 
-    // 카테고리가 여행인 책 제목 조회
-    bookList.stream().filter(book -> book.getCategory().equals("여행"))
-    .forEach(f -> System.out.println("카테고리가 여행인 책 제목: " + f.getBookName()));
-    System.out.println();
+   ```bash
+   ./gradlew build
+   ```
 
-filter()를 사용해서 book.getCategory().equals("여행") 카테고리가 “여행”인 책을 분류할 수 있습니다.<br/>
-forEach()를 사용해서 System.out.println("카테고리가 여행인 책 제목: " + f.getBookName()) 출력할 수 있습니다.<br/>
-### 조건2) 가격이 16200원 이하인 책 제목 조회
-    // 가격이 16200원 이하인 책 제목 조회
-    bookList.stream().filter(book -> book.getPrice() <= 16200)
-    .forEach(f -> System.out.println("가격 16200원 이하 책 제목: " + f.getBookName()));
-    System.out.println();
-filter()를 사용해서 book.getPrice() <= 16200 가격이 16200원 이하인 책을 분류할 수 있습니다.<br/>
-forEach()를 사용해서 System.out.println("가격 16200원 이하 책 제목: " + f.getBookName()) 출력할 수 있습니다.<br/>
-### 조건3) 책 제목에 "경제”라는 용어가 들어간 책 제목 조회
-    // 책 제목에 "경제" 라는 용어가 들어간 책 제목 조회
-    bookList.stream().filter(book -> book.getBookName().contains("경제"))
-    .forEach(f -> System.out.println("책 제목에 '경제'가 포함된 책 제목: " + f.getBookName()));
-    System.out.println();
-filter()를 사용해서 book.getBookName().contains("경제") 책 제목에 “경제”가 포함된 책을 분류할 수 있습니다.<br/>
-forEach()를 사용해서 System.out.println("책 제목에 '경제'가 포함된 책 제목: " + f.getBookName()) 출력할 수 있습니다.<br/>
-### 조건4) 가격이 가장 비싼 책 가격 조회
-    // 가격이 가장 비싼 책 가격 조회
-    double maxPrice = bookList.stream().mapToDouble(Book::getPrice)
-    .max().getAsDouble();
-    System.out.println("책 목록 중 가장 비싼 금액: " + maxPrice);
-    System.out.println();
-mapToDouble() 를 사용해서 Book::getPrice 책의 가격을 가지고 와서 max()를 사용하여 최댓값을 구할 수 있습니다.<br/>
-### 조건5) 카테고리가 IT인 책들의 가격 합 조회
-    // 카테고리가 IT인 책들의 가격 합 조회
-    double sum = bookList.stream().filter(book -> book.getCategory().equals("IT"))
-    .mapToDouble(Book::getPrice)
-    .sum();
-    System.out.println("카테고리 IT 책들의 가격 합: " + sum);
-    System.out.println();
-filter()를 사용해서 book.getCategory().equals("IT") 카테고리가 “IT”인 책을 분류할 수 있습니다.<br/>
-mapToDouble()를 사용해서 Book::getPrice 책의 가격을 가지고 와서 sum()를 사용하여 책들의 가격 합을 구할 수 있습니다.<br/>
-### 조건6) IT 책 할인 이벤트!
-    // IT 책 할인 이벤트!!
-    // 카테고리가 IT 인 책들의 가격을 40% 할인하여 새로운 책 리스트 만들기, discountedBookList
-    List<Book> discountedBookList = bookList.stream().filter(book -> book.getCategory().equals("IT"))
-    .map(book -> {
-        book.setPrice(book.getPrice() * 0.6);
-        return book;
-    }).toList();
-    
-    //        List<Book> discountedBookList = bookList.stream().filter(book -> book.getCategory().equals("IT"))
-    //                .peek(book -> book.setPrice(book.getPrice() * 0.6)).toList();
+4. **애플리케이션 실행**:
 
+   ```bash
+   ./gradlew run
+   ```
 
-    for (Book book : discountedBookList) {
-        System.out.println("할인된 책 제목: " + book.getBookName());
-        System.out.println("할인된 책 가격: " + book.getPrice() + "\n");
-    }
-filter()를 사용해서 book.getCategory().equals("IT") 카테고리가 “IT”인 책을 분류할 수 있습니다.<br/>
-map()을 사용해서 책의 가격을 수정할 수 있습니다.<br/>
-toList()를 사용해서 리스트로 만들 수 있습니다.
+   또는 생성된 JAR 파일을 직접 실행할 수 있습니다.
 
+   ```bash
+   java -jar build/libs/Java-Grammar-Comprehensive-Class-5.jar
+   ```
+
+## 클래스 구조
+
+- **Main**: 프로그램의 진입점으로, 사용자 입력을 처리하고 각 기능을 호출합니다.
+- **Book**: 책의 정보를 담는 클래스입니다. 제목, 저자, 카테고리, 가격 등의 속성을 가집니다.
+- **BookService**: 책 목록을 관리하고, 분류, 필터링, 정렬 등의 기능을 제공합니다.
